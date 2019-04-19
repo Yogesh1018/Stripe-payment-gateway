@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_04_19_100148) do
-
+ActiveRecord::Schema.define(version: 2019_04_19_122938) do
 
   create_table "books", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "author"
+    t.integer "price"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "books_id"
+    t.index ["books_id"], name: "index_orders_on_books_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -24,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_100148) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_token"
   end
 
 end
